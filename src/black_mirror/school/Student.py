@@ -7,7 +7,6 @@ class Student(object):
         self.name = name
         self.phone = phone
         self.age = age
-        self.events = []
         self.school = school
         self.schedule = [-1 for i in xrange(DAY_HOURS)] # Set all schedule to unknown class
 
