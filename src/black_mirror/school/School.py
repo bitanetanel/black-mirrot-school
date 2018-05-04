@@ -26,6 +26,7 @@ class School(object):
             teacher = Teacher(name, phone, class_number)
             self.teachers.append(teacher)
             self.get_class(class_number).teacher = teacher
+            return self.teachers.index(teacher)
 
     def add_student(self, name, phone, age):
         """
