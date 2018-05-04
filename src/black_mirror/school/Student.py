@@ -7,6 +7,7 @@ class Student(object):
         self.name = name
         self.phone = phone
         self.age = age
+        self.events = []
         self.school = school
         self.schedule = [-1 for i in xrange(DAY_HOURS)] # Set all schedule to unknown class
 
@@ -22,7 +23,9 @@ class Student(object):
         return class_number in self.schedule
 
     def eat(self):
-        EventsLogger.log(Eat(self))
+        eat_event = Eat(self)
+        EventsLogger.log(eat_event)
+        self.events.append(eat_event)
 
     def __repr__(self):
         return "Name: {}, Phone: {}, Age: {}".format(self.name, self.phone, self.age)

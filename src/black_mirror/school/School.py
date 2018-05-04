@@ -61,7 +61,9 @@ class School(object):
         klass = self.get_class(class_number)
         if student.can_enter_class(class_number) and klass.can_enter_class(student):
             klass.student_enter(student)
-            EventsLogger.log(EnterClass(student, class_number))
+            enter_event = EnterClass(student, class_number)
+            EventsLogger.log(enter_event)
+            student.events.append(enter_event)
         else:
             raise SystemError("{} can not enter class number {}".format(student_id, class_number))
 
@@ -70,11 +72,16 @@ class School(object):
         klass = self.get_class(class_number)
         if klass.can_exit_class(student):
             klass.student_exit(student)
-            EventsLogger.log(ExitClass(student, class_number))
+            exit_event = ExitClass(student, class_number)
+            EventsLogger.log(exit_event)
+            student.events.append(exit_event)
         else:
             raise SystemError("{} can not exit class number {}".format(student_id, class_number))
 
     def chat(self, first_student_id, second_student_id):
         first_student = self.get_student(first_student_id)
         second_student = self.get_student(second_student_id)
-        EventsLogger.log(Chat(first_student, second_student))
+        chat_event = Chat(first_student, second_student)
+        EventsLogger.log(chat_event)
+        first_student.events.append(chat_event)
+        second_student.events.append(chat_event)
