@@ -71,7 +71,10 @@ class ConsoleApp(object):
             student_id = input("Student id")
             self.school.get_student(student_id).eat()
         if option == 6:
-            pass
+            print "Chat"
+            first_student_id = input("First student id")
+            second_student_id = input("Second student id")
+            self.school.chat(first_student_id, second_student_id)
         if option == 7:
             print "Students:"
             print self.school.students

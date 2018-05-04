@@ -1,7 +1,7 @@
 from Class import Class
 from Teacher import Teacher
 from Student import Student
-from black_mirror.events import EventsLogger, EnterClass, ExitClass
+from black_mirror.events import EventsLogger, EnterClass, ExitClass, Chat
 
 
 class School(object):
@@ -73,3 +73,8 @@ class School(object):
             EventsLogger.log(ExitClass(student, class_number))
         else:
             raise SystemError("{} can not exit class number {}".format(student_id, class_number))
+
+    def chat(self, first_student_id, second_student_id):
+        first_student = self.get_student(first_student_id)
+        second_student = self.get_student(second_student_id)
+        EventsLogger.log(Chat(first_student, second_student))
